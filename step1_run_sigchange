@@ -1,0 +1,21 @@
+#!/bin/bash
+#for i in 1 2 3 4 5 6; do
+#for j in F3T_2011_05_001 F3T_2011_05_002 F3T_2011_05_003 F3T_2011_05_004 F3T_2011_05_005 F3T_2011_05_006 F3T_2011_05_008 F3T_2011_05_010 F3T_2011_05_011 F3T_2011_05_012 F3T_2011_05_013 F3T_2011_05_014 F3T_2011_05_015 F3T_2011_05_016 F3T_2011_05_017 F3T_2011_05_018 F3T_2011_05_019 F3T_2011_05_020 F3T_2011_05_021 F3T_2011_05_022 F3T_2011_05_023 F3T_2011_05_024 F3T_2011_05_025;  do
+#for n in for n in OCOI-OCSI_LPRC OCNI-OCOI_LHIPP SCNI-SCOI_LHIPP SCNI_SCOI_RHIPP SCSI-SCOI_RHIPP; do; do
+
+for j in ICI_001 ICI_002 ICI_003 ICI_004 ICI_005 ICI_006 ICI_007 ICI_008 ICI_009 ICI_010 ICI_011 ICI_012;  do
+#for j in VMEM4MR_006 VMEM4MR_008 VMEM4MR_012 VMEM4MR_014 VMEM4MR_018 VMEM4MR_022; do
+#for j in F3T_2011_22_001; do
+
+	for i in 141 142 143 144 145 146 147 148 149 150 151 152 153 154 155 156; do # cope number
+	
+		for n in prcsphere; do #name of mask, *w/o .nii.gz*
+				
+echo "${j} cope${i} mask ${n}"
+
+featquery 1 ~/Documents/Imaging/Item_context_interference/analysis/${j}/${j}_fixed_denoised.gfeat/cope${i}.feat 1 stats/pe1 ${n} -p -s ~/Documents/${n}.nii
+
+done
+	done
+		done
+

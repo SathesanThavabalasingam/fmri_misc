@@ -1,0 +1,43 @@
+#!/bin/bash
+
+
+for j in ICI_002 ICI_003 ICI_004 ICI_005 ICI_006 ICI_007 ICI_008 ICI_009 ICI_010 ICI_012;  do
+
+echo "Dataset: " $j
+nvols=`fslnvols /Users/Leelab/Documents/imaging/Item_context_interference/analysis/${j}/${j}_Run1.feat/filtered_func_data.nii.gz`
+echo "Volumes: " $nvols
+echo "Run: " 1
+
+cat /Users/Leelab/Documents/imaging/Item_context_interference/analysis/ICI_001/ICI_001_Run1.feat/ICI_001.feat/design.fsf |sed -e "s/ICI_001/${j}/g" -e "s/300/$nvols/g" >/Users/Leelab/Documents/imaging/Item_context_interference/analysis/${j}/${j}_Run1.feat/tmp_s${j}.fsf ;
+cd /Users/Leelab/Documents/imaging/Item_context_interference/analysis/${j}/${j}_Run1.feat/;
+feat /Users/Leelab/Documents/imaging/Item_context_interference/analysis/${j}/${j}_Run1.feat/tmp_s${j}.fsf;
+mv  /Users/Leelab/Documents/imaging/Item_context_interference/analysis/${j}/${j}_Run1.feat/tmp_s${j}.fsf ~/.Trash/;
+done
+
+for j in ICI_002 ICI_003 ICI_004 ICI_005 ICI_006 ICI_007 ICI_008 ICI_009 ICI_010 ICI_012;  do
+
+echo "Dataset: " $j
+nvols=`fslnvols /Users/Leelab/Documents/imaging/Item_context_interference/analysis/${j}/${j}_Run2.feat/filtered_func_data.nii.gz`
+echo "Volumes: " $nvols
+echo "Run: " 2
+
+cat /Users/Leelab/Documents/imaging/Item_context_interference/analysis/ICI_001/ICI_001_Run2.feat/ICI_001.feat/design.fsf |sed -e "s/ICI_001/${j}/g" -e "s/300/$nvols/g" >/Users/Leelab/Documents/imaging/Item_context_interference/analysis/${j}/${j}_Run2.feat/tmp_s${j}.fsf ;
+cd /Users/Leelab/Documents/imaging/Item_context_interference/analysis/${j}/${j}_Run2.feat/;
+feat /Users/Leelab/Documents/imaging/Item_context_interference/analysis/${j}/${j}_Run2.feat/tmp_s${j}.fsf;
+mv  /Users/Leelab/Documents/imaging/Item_context_interference/analysis/${j}/${j}_Run2.feat/tmp_s${j}.fsf ~/.Trash/;
+done
+
+for j in ICI_002 ICI_003 ICI_004 ICI_005 ICI_006 ICI_007 ICI_008 ICI_009 ICI_010 ICI_012;  do
+
+echo "Dataset: " $j
+nvols=`fslnvols /Users/Leelab/Documents/imaging/Item_context_interference/analysis/${j}/${j}_Run3.feat/filtered_func_data.nii.gz`
+echo "Volumes: " $nvols
+echo "Run: " 3
+
+cat /Users/Leelab/Documents/imaging/Item_context_interference/analysis/ICI_001/ICI_001_Run3.feat/ICI_001.feat/design.fsf |sed -e "s/ICI_001/${j}/g" -e "s/300/$nvols/g" >/Users/Leelab/Documents/imaging/Item_context_interference/analysis/${j}/${j}_Run3.feat/tmp_s${j}.fsf ;
+cd /Users/Leelab/Documents/imaging/Item_context_interference/analysis/${j}/${j}_Run3.feat/;
+feat /Users/Leelab/Documents/imaging/Item_context_interference/analysis/${j}/${j}_Run3.feat/tmp_s${j}.fsf;
+mv  /Users/Leelab/Documents/imaging/Item_context_interference/analysis/${j}/${j}_Run3.feat/tmp_s${j}.fsf ~/.Trash/;
+done
+
+
