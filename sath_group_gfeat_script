@@ -1,0 +1,14 @@
+#!/bin/bash
+
+
+for j in cope82 cope83 cope84 cope93 cope94 cope95 cope96 cope105 cope106 cope107 cope108 cope117 cope118 cope119 cope120 cope129 cope130 cope131 cope132 cope141 cope145 cope149 cope153;  do
+
+cat /Users/Leelab/Documents/imaging/Item_context_interference/analysis/group/cope81.gfeat/design.fsf|sed "s/cope81/${j}/g">/Users/Leelab/Documents/imaging/Item_context_interference/analysis/group/tmp_s${j}.fsf ;
+cd /Users/Leelab/Documents/imaging/Item_context_interference/analysis/group/;
+feat /Users/Leelab/Documents/imaging/Item_context_interference/analysis/group/tmp_s${j}.fsf;
+mv  /Users/Leelab/Documents/imaging/Item_context_interference/analysis/group/tmp_s${j}.fsf ~/.Trash/;
+
+done
+
+
+
