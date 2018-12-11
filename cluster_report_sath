@@ -1,0 +1,15 @@
+#!/bin/bash
+for contrst in {11..14}; do
+######
+echo "CONTRAST:" ${contrst}
+
+#full brain
+echo "full brain"
+/usr/share/fsl/5.0/bin/cluster -i ~/Documents/gapclass/york/univariate/full_analysis/Edsmooth/all/gap_rem/contrast${contrst}.gfeat/cope1.feat/OneSampT_tfce_corrp_tstat1.nii.gz -t .95
+
+#rois
+for roi in hc_mask.nii.gz ppa_mask.nii rsc.nii; do
+echo $roi
+/usr/share/fsl/5.0/bin/cluster -i ~/Documents/gapclass/york/univariate/full_analysis/Edsmooth/all/gap_rem/contrast${contrst}.gfeat/cope1.feat/randomise_${roi}_tfce_corrp_tstat1.nii.gz -t .9
+done
+done
