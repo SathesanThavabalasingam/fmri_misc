@@ -1,0 +1,83 @@
+#!/bin/bash
+export FSLPARALLEL=true
+#generates new files for fslmerge from tstat (or whatever) maps. first loop does exp conds, 2nd catch trials, then test trials below
+#this file contains information about the order of the volumes in the .nii files
+
+#MODIFY THE FOLLOWING 3 LINES
+#j=01
+#r=1
+
+
+######
+#Experimental trials
+######
+
+#for j in S1 S2 S3
+
+#for r in 1 2 3 4
+
+
+#for t in {1..150} ; do #trial
+
+
+#nvols=`fslnvols  /psyhome/u8/thavabal/VMEM7MR/Analysis/univariate_orig2/TIME_${j}/TIME_${j}_run${r}.feat/filtered_func_data_clean.nii.gz`
+#echo "Dataset: " ${j} "RUN:" $r  "trial: " $t "Volumes: " $nvols 
+#echo "/psyhome/u8/thavabal/VMEM7MR/RSA/per_trial_betas/TIME_${j}_run${r}_Trial${t}.feat "
+
+#cd /archive/margeris/Preprocessing_20sub_90secHP_melodic_zeroSS/conc/stats
+#cd /archive/thavabal/RSA/per_trial_betas/TIME_${j}_run${r}_Trial${t}.feat/stats 
+
+#cp tstat${t}.nii.gz /psyhome/u8/thavabal/VMEM7MR/RSA/betas/${j}tstat1_r${r}__${t}.nii.gz
+
+#done
+#done
+#done
+
+
+
+######
+#MERGE FILES EXP
+######
+
+for j in {003..018}; do
+
+for r in {1..2}; do
+
+
+cd /archive/tayjonat/Documents/gapclass/york/multivariate/pertrialbetas/${j}/imagine_all/ 
+
+
+b="/usr/share/fsl/5.0/bin/fslmerge -t /archive/tayjonat/Documents/gapclass/york/multivariate/pertrialbetas/concat_imagine/native/${j}_gap${r}_tstat_allcond_native.nii"
+
+for x in {1..16} #designate trial number
+do
+b=$b" tstat1_r${r}__${x}.nii.gz"
+done
+echo $b > tmpscript
+
+bash tmpscript ;
+#rm -f tmpscript
+
+done
+
+done
+##note confirm total trial num + associated test trial after deleted volume
+
+
+
+
+######
+#Put in Standard space
+######
+
+for j in {003..018}; do
+
+for r in {1..2}; do
+
+echo "Dataset: " ${j} "run" ${r}
+
+/usr/share/fsl/5.0/bin/flirt -in /archive/tayjonat/Documents/gapclass/york/multivariate/pertrialbetas/concat_imagine/native/${j}_gap${r}_tstat_allcond_native.nii -applyxfm -init /psyhome/u7/tayjonat/Documents/gapclass/york/univariate/full_analysis/Edsmooth/${j}/gap${r}.feat/reg/example_func2standard.mat -out /archive/tayjonat/Documents/gapclass/york/multivariate/pertrialbetas/concat_imagine/standard/${j}_gap${r}_tstat_allcond_standard.nii.gz -paddingsize 0.0 -interp trilinear -ref /usr/share/fsl/data/standard/MNI152_T1_2mm_brain.nii.gz
+
+done
+
+done
